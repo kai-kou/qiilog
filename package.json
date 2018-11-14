@@ -1,0 +1,44 @@
+{
+  "name": "qiilog",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "cross-env NODE_ENV=production nuxt build",
+    "start": "nuxt start",
+    "sls:local": "sls offline",
+    "sls:create": "npm run build && sls deploy",
+    "sls:delete": "sls remove",
+    "sls:deploy": "npm run build && sls deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kai-kou/qiilog.git"
+  },
+  "author": "kai-kou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kai-kou/qiilog/issues"
+  },
+  "homepage": "https://github.com/kai-kou/qiilog#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "aws-serverless-express": "^3.3.5",
+    "express": "^4.16.4",
+    "nuxt": "^2.2.0",
+    "nuxt-property-decorator": "^1.2.0",
+    "vuex-class": "^0.3.1"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "node-sass": "^4.9.4",
+    "sass-loader": "^7.1.0",
+    "serverless": "^1.32.0",
+    "serverless-apigw-binary": "^0.4.4",
+    "serverless-offline": "^3.29.0",
+    "ts-loader": "^5.2.2",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.3"
+  }
+}
