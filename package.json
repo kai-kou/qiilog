@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nuxt",
+    "debug": "node --inspect-brk=9229 node_modules/nuxt/bin/nuxt",
     "build": "cross-env NODE_ENV=production nuxt build",
     "start": "nuxt start",
     "sls:local": "sls offline",
@@ -23,8 +24,10 @@
   },
   "homepage": "https://github.com/kai-kou/qiilog#readme",
   "dependencies": {
-    "cookie-parser": "^1.4.3",
+    "@nuxtjs/axios": "^5.3.6",
     "aws-serverless-express": "^3.3.5",
+    "axios-debug": "^0.0.4",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
     "nuxt": "^2.2.0",
     "nuxt-property-decorator": "^1.2.0",

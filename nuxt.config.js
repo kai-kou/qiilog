@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser')
 module.exports = {
   srcDir: 'src',
   head: {
-    title: 'Nuxt Serverless Template',
+    title: 'qiilog',
     meta: [
       { chatset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -47,5 +47,11 @@ module.exports = {
     etag: false,
     // Disabled compression
     compressor: { threshold: Infinity },
+  },
+  modules: [
+    "@nuxtjs/axios",
+  ],
+  axios: {
+    baseURL: 'https://qiita.com/api/v2'
   }
 }
