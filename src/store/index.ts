@@ -17,6 +17,7 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit({ commit }) {
     commit('setVersion', '0.0.3')
+    this.$axios.defaults.headers.common['Authorization'] = 'Bearer xxxxx';
     const res = await this.$axios.$get('/items/f1623ac1f3d7aaab23fe')
     commit('setItem', res)
   },

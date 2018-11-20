@@ -52,6 +52,6 @@ module.exports = {
     "@nuxtjs/axios",
   ],
   axios: {
-    baseURL: 'https://qiita.com/api/v2'
+    baseURL: 'https://qiita.com/api/v2',
   }
 }

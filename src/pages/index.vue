@@ -1,9 +1,8 @@
 <template>
   <div class="page-index">
-    <h1>Nuxt Serverless Template {{ this.version }}</h1>
-    <p>{{ message }}</p>
-    <nuxt-link to="/typescript">typescript</nuxt-link>
-    <nuxt-link to="/nuxt">nuxt</nuxt-link>
+    <h1>とりあえずやってみる</h1>
+    <!-- <nuxt-link to="/typescript">typescript</nuxt-link>
+    <nuxt-link to="/nuxt">nuxt</nuxt-link> -->
     <div class="p-items_wrapper">
       <!-- <div class="p-items_container"> -->
         <!-- <div class="p-items_stickyMenu it-Actions" data-mount-target="articleStickyMenu">
