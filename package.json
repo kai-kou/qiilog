@@ -25,6 +25,7 @@
   "homepage": "https://github.com/kai-kou/qiilog#readme",
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/vuetify": "^0.4.3",
     "aws-serverless-express": "^3.3.5",
     "axios-debug": "^0.0.4",
     "cookie-parser": "^1.4.3",

@@ -7,7 +7,7 @@ module.exports = {
     title: 'qiilog',
     meta: [
       { chatset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' },
       { hid: 'description', name: 'description', content: 'Nuxt Serverless Template' },
     ],
     link: [
@@ -50,8 +50,17 @@ module.exports = {
   },
   modules: [
     "@nuxtjs/axios",
+    '@nuxtjs/vuetify',
   ],
   axios: {
     baseURL: 'https://qiita.com/api/v2',
-  }
+  },
+  vuetify: {
+    theme: {
+      primary: '#3f51b5',
+      secondary: '#b0bec5',
+      accent: '#8c9eff',
+      error: '#b71c1c'
+    }
+  },
 }
