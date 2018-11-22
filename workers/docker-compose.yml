@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    image: golang:latest
+    volumes:
+      - 'data:/go'
+      - '.:/go/src/app'
+volumes:
+  data:
+    driver: 'local'

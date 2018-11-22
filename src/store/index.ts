@@ -22,7 +22,7 @@ export const actions = {
   async nuxtServerInit({ commit }) {
     commit('setVersion', '0.0.3')
 
-    this.$axios.defaults.headers.common['Authorization'] = 'Bearer xxx';
+    this.$axios.defaults.headers.common['Authorization'] = 'Bearer 14ef9ffcb8785b17810ddb534170659d9fd3850c';
     const items = await this.$axios.$get('/authenticated_user/items')
     commit('setItems', items)
   },
