@@ -21,13 +21,13 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit({ commit }) {
     commit('setVersion', '0.0.3')
-
-    this.$axios.defaults.headers.common['Authorization'] = 'Bearer 14ef9ffcb8785b17810ddb534170659d9fd3850c';
-    const items = await this.$axios.$get('/authenticated_user/items')
+    console.log('nuxtServerInit');
+    this.$axios.defaults.headers.common['Content-Type'] = 'application/json';
+    const items = await this.$axios.$get('/items.json')
     commit('setItems', items)
   },
   async getItem({ commit }, params) {
-    const item = await this.$axios.$get('/items/' + params.item_id)
+    const item = await this.$axios.$get('/items/' + params.item_id + '.json')
     commit('setItem', item)
   }
 }
