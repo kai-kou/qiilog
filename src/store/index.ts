@@ -28,6 +28,7 @@ export const actions = {
   },
   async getItem({ commit }, params) {
     const item = await this.$axios.$get('/items/' + params.item_id + '.json')
+    item.rendered_body = item.rendered_body.replace(/\<pre\>/g, '<pre class=\"prettyprint\">')
     commit('setItem', item)
   }
 }

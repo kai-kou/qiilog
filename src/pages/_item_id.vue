@@ -37,14 +37,8 @@
                     </v-layout>
                   </v-container>
                 </v-img>
-                <v-card-text class="p-items_wrapper">
-                  <div class="p-items_main">
-                    <div class="p-items_article">
-                      <section class="it-MdContent">
-                        <div v-html="item.rendered_body"></div>
-                      </section>
-                    </div>
-                  </div>
+                <v-card-text>
+                  <div v-html="item.rendered_body"></div>
                 </v-card-text>
               </v-card>
             </div>
@@ -79,6 +73,7 @@
         </v-flex>
       </v-layout>
     </v-footer>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
   </v-app>
 </template>
 
@@ -92,9 +87,8 @@ export default class PageNuxt extends Vue {
     return {
       title: this.item.title + ' - ' + this.title,
       link: [
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
+        // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
         { rel: 'stylesheet', href: 'https://unpkg.com/vuetify/dist/vuetify.min.css' },
-        { rel: 'stylesheet', href: 'https://cdn.qiita.com/assets/public-f7955ff83ffb31880bac59d0cd469cbb.min.css' },
       ],
     }
   }
@@ -112,6 +106,13 @@ export default class PageNuxt extends Vue {
     return /^[0-9a-z]+$/.test(params.item_id)
   }
 
+  private mounted() {
+    this.$nextTick(() => {
+      console.log('mounted.$nextTick');
+      PR.prettyPrint();
+    })
+  }
+
   @State((state) => state.item) private item: {}
   @State((state) => state.items) private items: any[]
 
@@ -120,19 +121,4 @@ export default class PageNuxt extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.it-MdContent {
-  font-size: 11pt !important;
-}
-.p-items_wrapper {
-  padding: 0;
-}
-.p-items_main {
-  padding: 0 !important;
-}
-.p-items_article {
-  max-width: 1200px;
-  padding-top: 0;
-}
-.list {
-}
 </style>
