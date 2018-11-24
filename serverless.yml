@@ -2,11 +2,13 @@ service: qiilog
 
 provider:
   name: aws
-  runtime: nodejs8.10
   stage: ${opt:stage, 'dev'}
   region: ap-northeast-1
+
   environment:
     NODE_ENV: production
+    API_RESOURCES_BUCKET_NAME: qiilog-api-resources-${opt:stage, 'dev'}
+    API_RESOURCES_BUCKET_URL: https://s3.${self:provider.region}.amazonaws.com/${self:provider.environment.API_RESOURCES_BUCKET_NAME}
 
 custom:
   serverless-offline:
@@ -15,17 +17,24 @@ custom:
     types:
       - '*/*'
 
-package:
-  exclude:
-    - src/**
-  include:
-    - serverless.yml
-
 functions:
   nuxt-renderer:
+    runtime: nodejs8.10
     handler: handler.render
     memorySize: 512
     timeout: 30
+    package:
+      exclude:
+        - src/**
+        - workers/**
+        - .vscode/**
+        - package.json
+        - package-lock.json
+        - tsconfig.json
+        - tslint.json
+        - yarn.lock
+      include:
+        - serverless.yml
     events:
       - http:
           path: /
@@ -35,6 +44,78 @@ functions:
           path: /{proxy+}
           method: ANY
           cors: true
+
+  get-qiita-items:
+    runtime: go1.x
+    handler: workers/get-qiita-items/bin/main
+    timeout: 300
+    role: GetQiitaItemsRole
+    package:
+      exclude:
+        - ./**
+      include:
+        - workers/get-qiita-items/bin/**
+    events:
+      - schedule: cron(0 * * * ? *)
+    environment:
+      BUCKET: ${self:provider.environment.API_RESOURCES_BUCKET_NAME}
+      KEY: items.json
+      QIITA_ACCESS_TOKEN: xxxxxx
+
+resources:
+  Resources:
+    GetQiitaItemsRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: GetQiitaItemsRole
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: allowS3Policy
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement: [
+                {
+                  Action: ['s3:PutObject'],
+                  Effect: 'Allow',
+                  Resource: {
+                    Fn::Join: ['', ['arn:aws:s3:::', { Ref: 'ApiResourcesBucket' }, '/*']],
+                  }
+                },
+                {
+                  Action: ['lambda:*'],
+                  Effect: 'Allow',
+                  Resource: "*"
+                },
+              ]
+
+    ApiResourcesBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:provider.environment.API_RESOURCES_BUCKET_NAME}
+    ApiResourcesBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: ApiResourcesBucket
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement: [
+            {
+              Action: ['s3:GetObject'],
+              Effect: 'Allow',
+              Resource: {
+                Fn::Join: ['', ['arn:aws:s3:::', { Ref: 'ApiResourcesBucket' }, '/*']],
+              },
+              Principal: '*'
+            },
+          ]
 
 plugins:
   - serverless-offline

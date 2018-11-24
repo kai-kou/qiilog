@@ -53,7 +53,7 @@ module.exports = {
     '@nuxtjs/vuetify',
   ],
   axios: {
-    baseURL: 'https://qiita.com/api/v2',
+    baseURL: 'https://s3.ap-northeast-1.amazonaws.com/qiilog-api-resources-dev',
   },
   vuetify: {
     theme: {
