@@ -50,6 +50,9 @@ module.exports = {
   modules: [
     "@nuxtjs/axios",
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics', {
+      id: 'UA-129651037-1',
+    }
   ],
   axios: {
     baseURL: 'https://s3.ap-northeast-1.amazonaws.com/qiilog-api-resources-dev',
