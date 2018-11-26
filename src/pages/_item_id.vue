@@ -38,7 +38,7 @@
                   </v-container>
                 </v-img>
                 <v-card-text>
-                  <div v-html="item.rendered_body"></div>
+                  <div class="item" v-html="item.rendered_body"></div>
                 </v-card-text>
               </v-card>
             </div>
@@ -99,7 +99,7 @@ export default class PageNuxt extends Vue {
   }
 
   private watchQuery() {
-    return ['user_id']
+    return ['item_id']
   }
 
   private validate({params}) {
@@ -121,4 +121,7 @@ export default class PageNuxt extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.headline {
+  font-weight: bold;
+}
 </style>
