@@ -9,9 +9,10 @@ module.exports = {
       { chatset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' },
       { hid: 'description', name: 'description', content: 'Nuxt Serverless Template' },
+      { name: 'robots', content: 'noindex,nofollow' },
     ],
     link: [
-      { rel: 'icon', href: '/dev/static/favicon.ico' },
+      { rel: 'icon', href: '/static/favicon.ico' },
     ],
   },
   extensions: ['js', 'ts'],
@@ -41,12 +42,10 @@ module.exports = {
     },
   },
   router: {
-    base: '/dev/'
+    base: ''
   },
   render: {
     etag: false,
-    // Disabled compression
-    compressor: { threshold: Infinity },
   },
   modules: [
     "@nuxtjs/axios",

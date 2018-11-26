@@ -40,6 +40,7 @@
     "sass-loader": "^7.1.0",
     "serverless": "^1.32.0",
     "serverless-apigw-binary": "^0.4.4",
+    "serverless-domain-manager": "^2.6.6",
     "serverless-offline": "^3.29.0",
     "ts-loader": "^5.2.2",
     "tslint": "^5.11.0",

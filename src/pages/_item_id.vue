@@ -27,7 +27,7 @@
               <v-card class="my-3">
                 <v-img
                   class="white--text"
-                  src="https://d2l930y2yx77uc.cloudfront.net/production/uploads/images/8544405/wallpaper_landscape_4a50f4bac81212c3140c2af4b913c726.jpg"
+                  src="https://source.unsplash.com/1280x528/daily?coding,python"
                 >
                   <v-container fill-height fluid>
                     <v-layout>

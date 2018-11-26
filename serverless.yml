@@ -11,6 +11,12 @@ provider:
     API_RESOURCES_BUCKET_URL: https://s3.${self:provider.region}.amazonaws.com/${self:provider.environment.API_RESOURCES_BUCKET_NAME}
 
 custom:
+  customDomain:
+    domainName: "${self:provider.stage}.qiilog.com"
+    stage: ${opt:stage, 'dev'}
+    region: ap-northeast-1
+    certificateName: "*.qiilog.com"
+    createRoute53Record: true
   serverless-offline:
     port: 4000
   apigwBinary:
@@ -60,7 +66,7 @@ functions:
     environment:
       BUCKET: ${self:provider.environment.API_RESOURCES_BUCKET_NAME}
       KEY: items.json
-      QIITA_ACCESS_TOKEN: xxxxxx
+      QIITA_ACCESS_TOKEN: xxxxxxxxxx
 
 resources:
   Resources:
@@ -120,3 +126,4 @@ resources:
 plugins:
   - serverless-offline
   - serverless-apigw-binary
+  - serverless-domain-manager
