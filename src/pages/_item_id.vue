@@ -86,9 +86,23 @@ export default class PageNuxt extends Vue {
   private head() {
     return {
       title: this.item.title + ' - ' + this.title,
+      meta: [
+        { name: 'description', content: this.item.body.replace(/#|\r|\n/g, '').substr(0, 100) },
+        { property: 'og:url', content: 'ページのURL' },
+        { property: 'og:title', content: this.item.title + ' - ' + this.title },
+        { property: 'og:type', content: 'article' },
+        { property: 'og:description', content: this.item.body.replace(/#|\r|\n/g, '').substr(0, 100) },
+        { property: 'og:image', content: 'https://source.unsplash.com/1280x528/daily?coding,python' },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:site', content: '@k_aik_ou' },
+        { property: 'og:site_name', content: this.title },
+        { property: 'og:locale', content: 'ja_JP' },
+        { name: 'format-detection', content: 'email=no,telephone=no,address=no' },
+      ],
       link: [
-        // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
         { rel: 'stylesheet', href: 'https://unpkg.com/vuetify/dist/vuetify.min.css' },
+        { rel: 'apple-touch-icon', type: 'image/png', href: 'https://qiita-image-store.s3.amazonaws.com/0/48549/profile-images/1524132209' },
       ],
     }
   }
