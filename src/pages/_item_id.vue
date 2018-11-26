@@ -38,6 +38,8 @@
                   </v-container>
                 </v-img>
                 <v-card-text>
+                  <span class="grey--text">{{item.created_at}}</span><br>
+                  <v-chip outline color="secondary" v-for="tag in item.tags" :key="tag.id">{{tag.name}}</v-chip><br />
                   <div class="item" v-html="item.rendered_body"></div>
                 </v-card-text>
               </v-card>
@@ -45,7 +47,7 @@
           </v-flex>
 
           <v-flex class="list" xs12 v-for="post in items" :key="post.id">
-            <v-card class="my-3" hover :href="post.id">
+            <v-card class="my-3" hover tile :href="post.id">
               <v-card-title primary-title>
                 <div>
                   <div class="headline">{{ post.title }}</div>
@@ -53,6 +55,8 @@
                 </div>
               </v-card-title>
               <v-card-text>
+                <span class="grey--text">{{post.created_at}}</span><br>
+                <v-chip outline color="secondary" v-for="tag in post.tags" :key="tag.id">{{tag.name}}</v-chip>
               </v-card-text>
             </v-card>
           </v-flex>
