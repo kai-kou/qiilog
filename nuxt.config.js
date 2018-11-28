@@ -1,5 +1,6 @@
 const express = require('express')
 const cookieParser = require('cookie-parser')
+require('dotenv').config()
 
 module.exports = {
   srcDir: 'src',
@@ -9,7 +10,7 @@ module.exports = {
       { chatset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' },
       { hid: 'description', name: 'description', content: 'Nuxt Serverless Template' },
-      { name: 'robots', content: 'noindex,nofollow' },
+      { name: 'robots', content: process.env.META_ROBOTS_CONTENT },
     ],
     link: [
       { rel: 'icon', href: '/static/favicon.ico' },
@@ -51,11 +52,12 @@ module.exports = {
     "@nuxtjs/axios",
     '@nuxtjs/vuetify',
     ['@nuxtjs/google-analytics', {
-      id: 'UA-xxxxxxxxx-x',
+      id: process.env.GOOGLE_ANALYTICS_ID,
     }],
+    '@nuxtjs/dotenv',
   ],
   axios: {
-    baseURL: 'https://s3.ap-northeast-1.amazonaws.com/qiilog-api-resources-dev',
+    baseURL: process.env.API_RESOURCES_BUCKET_URL + process.env.API_RESOURCES_BUCKET_NAME,
   },
   vuetify: {
     theme: {

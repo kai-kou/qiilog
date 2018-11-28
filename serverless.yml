@@ -7,19 +7,18 @@ provider:
 
   environment:
     NODE_ENV: production
-    API_RESOURCES_BUCKET_NAME: qiilog-api-resources-${opt:stage, 'dev'}
-    API_RESOURCES_BUCKET_URL: https://s3.${self:provider.region}.amazonaws.com/${self:provider.environment.API_RESOURCES_BUCKET_NAME}
+    API_RESOURCES_BUCKET_NAME: ${env:API_RESOURCES_BUCKET_NAME}
+    API_RESOURCES_BUCKET_URL: ${env:API_RESOURCES_BUCKET_URL}${self:provider.environment.API_RESOURCES_BUCKET_NAME}
 
 package:
   individually: true
-  excludeDevDependencies: true
 
 custom:
   customDomain:
-    domainName: "${self:provider.stage}.qiilog.com"
+    domainName: "${self:provider.stage}.${env:HOSTNAME}"
     stage: ${opt:stage, 'dev'}
     region: ap-northeast-1
-    certificateName: "*.qiilog.com"
+    certificateName: "*.${env:HOSTNAME}"
     createRoute53Record: true
   serverless-offline:
     port: 4000
@@ -39,31 +38,9 @@ functions:
         - workers/**
         - .vscode/**
         - package.json
-        - package-lock.json
         - tsconfig.json
         - tslint.json
         - yarn.lock
-        - node_modules/@babel/**
-        - node_modules/@csstools/**
-        - node_modules/@serverless/**
-        - node_modules/@webassemblyis/**
-        - node_modules/aws-sdk/**
-        - node_modules/babel-code-frame/**
-        - node_modules/babel-helper-vue-jsx-merge-props/**
-        - node_modules/babel-loader/**
-        - node_modules/babel-plugin-transform-vue-jsx/**
-        - node_modules/babel-polyfill/**
-        - node_modules/babel-runtime/**
-        - node_modules/serverless/**
-        - node_modules/serverless-apigw-binary/**
-        - node_modules/serverless-domain-manager/**
-        - node_modules/serverless-offline/**
-        - node_modules/cross-env/**
-        - node_modules/node-sass/**
-        - node_modules/sass-loader/**
-        - node_modules/ts-loader/**
-        - node_modules/tslint/**
-        - node_modules/typescript/**
     events:
       - http:
           path: /
@@ -89,7 +66,7 @@ functions:
     environment:
       BUCKET: ${self:provider.environment.API_RESOURCES_BUCKET_NAME}
       KEY: items.json
-      QIITA_ACCESS_TOKEN: xxxxxxxxxx
+      QIITA_ACCESS_TOKEN: ${env:QIITA_ACCESS_TOKEN}
 
 resources:
   Resources:
@@ -150,3 +127,4 @@ plugins:
   - serverless-offline
   - serverless-apigw-binary
   - serverless-domain-manager
+  - serverless-dotenv-plugin
