@@ -55,6 +55,7 @@ module.exports = {
       id: process.env.GOOGLE_ANALYTICS_ID,
     }],
     '@nuxtjs/dotenv',
+    '@nuxtjs/sitemap',
   ],
   axios: {
     baseURL: process.env.API_RESOURCES_BUCKET_URL + process.env.API_RESOURCES_BUCKET_NAME,
@@ -62,5 +63,26 @@ module.exports = {
   vuetify: {
     theme: {
     },
+  },
+  sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'https://' + process.env.HOSTNAME,
+    cacheTime: 1000 * 60 * 60,
+    gzip: true,
+    generate: false,
+    exclude: [
+      'typescript',
+      'nuxt',
+    ],
+    async routes () {
+      const axios = require('axios');
+      const apiBaseUrl = process.env.API_RESOURCES_BUCKET_URL + process.env.API_RESOURCES_BUCKET_NAME;
+      const items = await axios.get(apiBaseUrl + '/items.json');
+      let urls = [];
+      var routes = items.data.map((item) => {
+        return item.id
+      });
+      return routes;
+    }
   },
 }
