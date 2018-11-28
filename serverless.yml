@@ -10,6 +10,10 @@ provider:
     API_RESOURCES_BUCKET_NAME: qiilog-api-resources-${opt:stage, 'dev'}
     API_RESOURCES_BUCKET_URL: https://s3.${self:provider.region}.amazonaws.com/${self:provider.environment.API_RESOURCES_BUCKET_NAME}
 
+package:
+  individually: true
+  excludeDevDependencies: true
+
 custom:
   customDomain:
     domainName: "${self:provider.stage}.qiilog.com"
@@ -39,8 +43,21 @@ functions:
         - tsconfig.json
         - tslint.json
         - yarn.lock
-      include:
-        - serverless.yml
+        - node_modules/@babel/**
+        - node_modules/@serverless/**
+        - node_modules/@webassemblyis/**
+        - node_modules/aws-sdk/**
+        - node_modules/axios-debug/**
+        - node_modules/babel-code-frame/**
+        - node_modules/babel-helper-vue-jsx-merge-props/**
+        - node_modules/babel-loader/**
+        - node_modules/babel-plugin-transform-vue-jsx/**
+        - node_modules/babel-polyfill/**
+        - node_modules/babel-runtime/**
+        - node_modules/serverless/**
+        - node_modules/serverless-apigw-binary/**
+        - node_modules/serverless-domain-manager/**
+        - node_modules/serverless-offline/**
     events:
       - http:
           path: /
