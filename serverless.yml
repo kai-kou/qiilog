@@ -44,10 +44,10 @@ functions:
         - tslint.json
         - yarn.lock
         - node_modules/@babel/**
+        - node_modules/@csstools/**
         - node_modules/@serverless/**
         - node_modules/@webassemblyis/**
         - node_modules/aws-sdk/**
-        - node_modules/axios-debug/**
         - node_modules/babel-code-frame/**
         - node_modules/babel-helper-vue-jsx-merge-props/**
         - node_modules/babel-loader/**
@@ -58,6 +58,12 @@ functions:
         - node_modules/serverless-apigw-binary/**
         - node_modules/serverless-domain-manager/**
         - node_modules/serverless-offline/**
+        - node_modules/cross-env/**
+        - node_modules/node-sass/**
+        - node_modules/sass-loader/**
+        - node_modules/ts-loader/**
+        - node_modules/tslint/**
+        - node_modules/typescript/**
     events:
       - http:
           path: /
