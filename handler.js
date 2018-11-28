@@ -4,6 +4,7 @@ const app = require('./server')
 const binaryMimeTypes = [
   'application/javascript',
   'application/json',
+  'application/manifest+json',
   'application/octet-stream',
   'application/xml',
   'font/eot',
@@ -19,7 +20,7 @@ const binaryMimeTypes = [
   'text/javascript',
   'text/plain',
   'text/text',
-  'text/xml'
+  'text/xml',
 ]
 const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes)
 

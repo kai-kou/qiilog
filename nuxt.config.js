@@ -56,6 +56,7 @@ module.exports = {
     }],
     '@nuxtjs/dotenv',
     '@nuxtjs/sitemap',
+    '@nuxtjs/pwa',
   ],
   axios: {
     baseURL: process.env.API_RESOURCES_BUCKET_URL + process.env.API_RESOURCES_BUCKET_NAME,
@@ -84,5 +85,21 @@ module.exports = {
       });
       return routes;
     }
+  },
+  manifest: {
+    name: process.env.APP_TITLE,
+    lang: 'ja',
+    start_url: '/',
+    icons: [
+      {
+        src: "static//icon.png",
+        sizes: "512x512",
+        type: "image/png",
+      }
+    ]
+  },
+  workbox: {
+    dev: true,
+    swDest: 'static/sw.js',
   },
 }
