@@ -46,7 +46,7 @@
             </div>
           </v-flex>
 
-          <v-flex class="list" xs12 v-for="post in items" :key="post.id">
+          <v-flex class="list" xs12 v-for="post in items" :key="post.id" v-if="$ua.deviceType() != 'crawler'">
             <v-card class="my-3" hover tile :href="post.id">
               <v-card-title primary-title>
                 <div>
@@ -91,17 +91,17 @@ export default class PageNuxt extends Vue {
     return {
       title: this.item.title + ' - ' + this.title,
       meta: [
-        { name: 'description', content: this.item.body.replace(/#|\r|\n/g, '').substr(0, 100) },
-        { property: 'og:url', content: 'ページのURL' },
-        { property: 'og:title', content: this.item.title + ' - ' + this.title },
-        { property: 'og:type', content: 'article' },
-        { property: 'og:description', content: this.item.body.replace(/#|\r|\n/g, '').substr(0, 100) },
-        { property: 'og:image', content: 'https://source.unsplash.com/1280x528/daily?coding,python' },
-        { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:site', content: '@k_aik_ou' },
-        { property: 'og:site_name', content: this.title },
-        { property: 'og:locale', content: 'ja_JP' },
-        { name: 'format-detection', content: 'email=no,telephone=no,address=no' },
+        { hid: 'description', name: 'description', content: this.item.body.replace(/#|\r|\n/g, '').substr(0, 100) },
+        { hid: 'og:url', property: 'og:url', content: 'https://' + process.env.HOSTNAME + '/' + this.item.id },
+        { hid: 'og:title', property: 'og:title', content: this.item.title + ' - ' + this.title },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:description', property: 'og:description', content: this.item.body.replace(/#|\r|\n/g, '').substr(0, 100) },
+        { hid: 'og:image', property: 'og:image', content: 'https://' + process.env.HOSTNAME + '/static/big_image.jpeg' },
+        { hid: 'og:site_name', property: 'og:site_name', content: this.title },
+        { hid: 'og:locale', property: 'og:locale', content: 'ja_JP' },
+        { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+        { hid: 'twitter:site', name: 'twitter:site', content: '@k_aik_ou' },
+        { hid: 'format-detection', name: 'format-detection', content: 'email=no,telephone=no,address=no' },
       ],
       link: [
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },

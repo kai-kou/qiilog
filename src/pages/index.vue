@@ -22,7 +22,7 @@
             </div>
           </v-flex>
           <v-flex class="list" xs12 v-for="post in items" :key="post.id">
-            <v-card class="my-3" hover tile :href="post.id">
+            <v-card class="my-3" hover tile :href="post.id" v-if="$ua.deviceType() != 'crawler'">
               <v-card-title primary-title>
                 <div>
                   <div class="headline">{{ post.title }}</div>
@@ -42,7 +42,7 @@
       <v-layout row wrap align-center>
         <v-flex xs12>
           <div class="white--text ml-3">
-            Made with
+            {{$ua.deviceType()}}Made with
             <v-icon class="red--text">favorite</v-icon>
             by <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>
             and <a class="white--text" href="https://github.com/kai-kou" target="_blank">kai_kou</a>
@@ -56,6 +56,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { State } from 'vuex-class'
+
 
 @Component
 export default class PageNuxt extends Vue {
@@ -73,6 +74,10 @@ export default class PageNuxt extends Vue {
   @State((state) => state.items) private items: any[];
 
   private title: string = 'とりあえずやってみる';
+
+  private mounted() {
+    console.log(this.$ua.deviceType());
+  }
 }
 </script>
 

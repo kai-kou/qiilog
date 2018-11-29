@@ -8,9 +8,19 @@ module.exports = {
     title: 'qiilog',
     meta: [
       { chatset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' },
-      { hid: 'description', name: 'description', content: 'Nuxt Serverless Template' },
-      { name: 'robots', content: process.env.META_ROBOTS_CONTENT },
+      { hid: 'viewport', name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' },
+      { hid: 'description', name: 'description', content: 'とりあえずやってみたらハマってBLOGの記事になるやろ' },
+      { hid: 'og:url', property: 'og:url', content: 'https://' + process.env.HOSTNAME },
+      { hid: 'og:title', property: 'og:title', content: 'とりあえずやってみる' },
+      { hid: 'og:type', property: 'og:type', content: 'article' },
+      { hid: 'og:description', property: 'og:description', content: 'とりあえずやってみたらハマってBLOGの記事になるやろ' },
+      { hid: 'og:image', property: 'og:image', content: 'https://' + process.env.HOSTNAME + '/static/big_image.jpeg' },
+      { hid: 'og:site_name', property: 'og:site_name', content: 'とりあえずやってみる' },
+      { hid: 'og:locale', property: 'og:locale', content: 'ja_JP' },
+      { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+      { hid: 'twitter:site', name: 'twitter:site', content: '@k_aik_ou' },
+      { hid: 'format-detection', name: 'format-detection', content: 'email=no,telephone=no,address=no' },
+      { hid: 'robots', name: 'robots', content: process.env.META_ROBOTS_CONTENT },
     ],
     link: [
       { rel: 'icon', href: '/static/favicon.ico' },
@@ -57,6 +67,7 @@ module.exports = {
     '@nuxtjs/dotenv',
     '@nuxtjs/sitemap',
     '@nuxtjs/pwa',
+    'nuxt-user-agent',
   ],
   axios: {
     baseURL: process.env.API_RESOURCES_BUCKET_URL + process.env.API_RESOURCES_BUCKET_NAME,
@@ -99,7 +110,6 @@ module.exports = {
     ]
   },
   workbox: {
-    dev: true,
     swDest: 'static/sw.js',
   },
 }

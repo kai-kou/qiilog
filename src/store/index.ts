@@ -11,9 +11,14 @@ export const mutations = {
     state.version = version
   },
   setItems(state, items: []) {
-    state.items = items.filter((element: any) => {
-      return element.private == false;
-    });
+    try {
+      state.items = items.filter((element: any) => {
+        return element.private == false;
+      });
+    }
+    catch (err) {
+      return [];
+    }
   },
   setItem(state, item: {}) {
     state.item = item
